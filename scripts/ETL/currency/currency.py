@@ -1,12 +1,11 @@
-import csv
-import os
-from datetime import datetime
+import csv, os, json, datetime, pytz
 
 class Currency_ETL:
-  def __init__(self, dw_interface):
+  def __init__(self, dw_interface, script_time_tracker):
       self.dw_interface = dw_interface
-      script_dir = os.path.dirname(os.path.realpath(__file__))
-      csv_file_path = os.path.join(script_dir, 'Currencies relative to USD.csv')
+      self.script_time_tracker = script_time_tracker
+      root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+      csv_file_path = os.path.join(root_dir, 'resources', 'data', 'currency', 'Currencies relative to USD.csv')
       self.insert_currencyPrices(csv_file_path)
 
   def insert_currencyPrices(self, csv_file_path):
@@ -34,3 +33,5 @@ class Currency_ETL:
       cursor.close()
       print(f"Inserted {currencyName} with Symbol {currencyCode} into the Currency table")
 
+  def __del__(self):
+    self.script_time_tracker.track_time(self.__class__.__name__)

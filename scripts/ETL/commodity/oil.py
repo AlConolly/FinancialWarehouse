@@ -2,31 +2,36 @@ import csv
 import os
 from datetime import datetime
 
-class Gold_ETL:
+class Commodity_Oil_ETL:
   def __init__(self, dw_interface):
       self.dw_interface = dw_interface
       script_dir = os.path.dirname(os.path.realpath(__file__))
-      csv_file_path = os.path.join(script_dir, 'LBMA-GOLD.csv')
-      self.insert_goldPrices(csv_file_path)
+      csv_file_path = os.path.join(script_dir, 'BrentOilPrices.csv')
+      self.insert_oilPrices(csv_file_path)
 
-  def insert_goldPrices(self, csv_file_path):
+  def insert_oilPrices(self, csv_file_path):
       with open(csv_file_path, 'r') as file:
           csv_reader = csv.reader(file)
           next(csv_reader)  # Skip the header row
           for row in csv_reader:
-              Date,USD_AM,USD_PM,GBP_AM,GBP_PM,EURO_AM,EURO_PM = row
-              self.insert_goldPrice(Date,USD_AM) #USD_AM is used to store the price and other columns are not used
+              Date,Price = row
+              self.insert_oilPrice(Date,Price)
 
-  def insert_goldPrice(self,input_date,price):
+  def insert_oilPrice(self,input_date,price):
       cursor = self.dw_interface.connection.cursor()
       try:
           # Parse the original date format
-          parsed_date = datetime.strptime(input_date, '%Y-%m-%d')
+          parsed_date = datetime.strptime(input_date, '%d-%b-%y')
 
           commodity_date = parsed_date.strftime('%d-%b-%y')
       except ValueError:
-          print(f"Date {input_date} does not match format 'YYYY-MM-DD'. Skipping row.")
-          return
+          try:
+            parsed_date = datetime.strptime(input_date, '%b-%d-%Y')
+
+            commodity_date = parsed_date.strftime('%d-%b-%y')
+          except ValueError:
+            print(f"Date {input_date} does not match format 'DD-Mon-YY' or 'Mon DD, YYYY'. Skipping row.")
+            return
       
       # Create a bind variable for an integer
       new_id = cursor.var(int)
@@ -49,7 +54,7 @@ class Gold_ETL:
 
       cursor.execute("SELECT COUNT(*) FROM daily_transactions WHERE date_id = :date_id AND commodity_id IS NOT NULL", {'date_id': date_id})
       if cursor.fetchone()[0] > 0:
-        print(f"Gold Price at date {commodity_date} already exists in the database. Skipping row.")
+        print(f"Oil Price at date {commodity_date} already exists in the database. Skipping row.")
         return
 
       # Create a bind variable for an integer
@@ -57,16 +62,16 @@ class Gold_ETL:
 
       cursor.execute(
           "INSERT INTO commodity (name, unit_of_measure,type) VALUES (:name, :price, :type) RETURNING id INTO :new_id",
-          {'name': f"Gold Price on {parsed_date}", 'price': price, 'type': "gold", 'new_id': new_id2}
+          {'name': f"Oil Price on {parsed_date}", 'price': price, 'type': "oil", 'new_id': new_id2}
       )
-      gold_id = new_id2.getvalue()[0]
+      oil_id = new_id2.getvalue()[0]
 
       cursor.execute(
-          "INSERT INTO daily_transactions (commodity_id,date_id,price) VALUES (:gold_id, :date_id, :price)",
-          {'gold_id': gold_id, "date_id": date_id , 'price': price}
+          "INSERT INTO daily_transactions (commodity_id,date_id,price) VALUES (:oil_id, :date_id, :price)",
+          {'oil_id': oil_id, "date_id": date_id , 'price': price}
       )
 
 
       self.dw_interface.connection.commit()  # Commit the transaction
       cursor.close()
-      print(f"Inserted Gold Price from {commodity_date} into the Daily_Transaction and Commodity table")
+      print(f"Inserted Oil Price from {commodity_date} into the Dailty_Transaction and Commodity table")

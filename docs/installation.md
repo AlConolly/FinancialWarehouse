@@ -28,6 +28,18 @@ pip install -r requirements.txt
 
 To connect to the database, create a `.env` file in the root directory of the project and add the values from our database connection values.
 
+Example `.env` file:
+
+```
+CONFIG_DIR="C:\\opt\\OracleCloud\\<wallet_dir>"
+USER=""
+PASSWORD=""
+DSN="<wallet_name>_low"
+WALLET_LOCATION="C:\\opt\\OracleCloud\\<wallet_name>"
+WALLET_PASSWORD=""
+ALPHA_ADVANTAGE_API_KEY=""
+```
+
 Add the wallet files from Oracle into this directory on your computer.
 
 ```bash

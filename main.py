@@ -7,6 +7,7 @@ from oracle.connection import DW_Interface
 
 # ETL Utils
 from scripts.ETL.utils.script_time_tracker import ScriptTimeTracker
+from scripts.ETL.utils.daily_transactions import DailyTransactions
 
 # ETL Classes
 from scripts.ETL.currency.currency import Currency_ETL
@@ -66,7 +67,7 @@ def run_script():
         'Enter the number of the ETL script you want to run', type=int) - 1
     script = scripts[choice]
     script_class = script_classes[script]
-    script_class(DW_Interface, Script_Tracker)
+    script_class(DW_Interface, DailyTransactions, Script_Tracker)
 
 if __name__ == '__main__':
     run_script()

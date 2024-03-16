@@ -18,9 +18,10 @@ Write the ETL script in the Python file that you created in step 2. The script l
 import os
 
 class Currency_ETL:
-  def __init__(self, dw_interface, script_time_tracker):
+  def __init__(self, dw_interface, daily_transactions, script_time_tracker):
       self.dw_interface = dw_interface
       self.script_time_tracker = script_time_tracker
+      self.daily_transactions = daily_transactions
       root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
       csv_file_path = os.path.join(root_dir, 'resources', 'data', '<folder name>', '<etl file name>')
       self.insert_currencyPrices(csv_file_path)
@@ -33,3 +34,9 @@ class Currency_ETL:
 ```
 
 Its important to note that the `__init__` method takes two parameters, `dw_interface` and `script_time_tracker`. The `dw_interface` is an instance of the `DWInterface` class, which is used to interact with the data warehouse. The `script_time_tracker` is an instance of the `ScriptTimeTracker` class, which is used to track the time that the ETL script ran at.
+
+## Date Format
+
+The date format for the ETL scripts should be in the format `YY-MM-DD`. This is the format that the data warehouse uses to store dates.
+
+Ex: `21-01-01`, `89-04-19`

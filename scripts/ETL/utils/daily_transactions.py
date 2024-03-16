@@ -48,7 +48,11 @@ class Daily_Transactions_ETL:
     pass
 
   def get_currency_id(self, currency_code):
-    pass
+    cursor = self.dw_interface.connection.cursor()
+    cursor.execute("SELECT id FROM currency WHERE code = :code", {'code': currency_code})
+    currency_id = cursor.fetchone()[0]
+    cursor.close()
+    return currency_id
 
 
   # Parameter Date is in 'YYYY-MM-DD' format

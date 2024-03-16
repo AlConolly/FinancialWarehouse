@@ -7,7 +7,7 @@ class Visualization:
 
   def get_data(self):
       cursor = self.dw_interface.connection.cursor()
-      cursor.execute("SELECT * from company")
+      cursor.execute("SELECT from DATE_RECORD where date_column = '01-JAN-90'")
       data = cursor.fetchall()
       cursor.close()
       return data

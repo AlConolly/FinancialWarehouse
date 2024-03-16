@@ -1,4 +1,9 @@
 
+
+
+from datetime import datetime
+
+
 class Daily_Transactions_ETL:
   def __init__(self, dw_interface):
       self.dw_interface = dw_interface
@@ -45,9 +50,18 @@ class Daily_Transactions_ETL:
   def get_currency_id(self, currency_code):
     pass
 
+
+  # Parameter Date is in 'YYYY-MM-DD' format
   def get_date_id(self, date):
-    cursor = self.dw_interface.connection.cursor()
-    cursor.execute("SELECT id FROM date_record WHERE date_column = :date", {'date': date})
-    date_id = cursor.fetchone()[0]
-    cursor.close()
-    return date_id
+      cursor = self.dw_interface.connection.cursor()
+      date_obj = datetime.strptime(date, '%Y-%m-%d')
+      day, month, year = date_obj.day, date_obj.month, date_obj.year
+      cursor.execute("""
+          SELECT id FROM date_record
+          WHERE EXTRACT(DAY FROM date_column) = :day_var
+          AND EXTRACT(MONTH FROM date_column) = :month_var
+          AND EXTRACT(YEAR FROM date_column) = :year_var
+      """, {'day_var': day, 'month_var': month, 'year_var': year})
+      date_id = cursor.fetchone()[0]
+      cursor.close()
+      return date_id

@@ -1,23 +1,28 @@
-import unittest
-from unittest.mock import Mock, patch
+import unittest, os
+from dotenv import load_dotenv
 from oracle.connection import DW_Interface
 from scripts.ETL.utils.daily_transactions import Daily_Transactions_ETL
 
+class DailyTransactionsTests(unittest.TestCase):
+    def setUp(self):
+        load_dotenv()
+        config_dir = os.getenv('CONFIG_DIR')
+        user = os.getenv('USER')
+        password = os.getenv('PASSWORD')
+        dsn = os.getenv('DSN')
+        wallet_location = os.getenv('WALLET_LOCATION')
+        wallet_password = os.getenv('WALLET_PASSWORD')
+        self.mock_dw_interface = DW_Interface(
+            config_dir, user, password, dsn, wallet_location, wallet_password)
 
-class TestGetDateId(unittest.TestCase):
     def test_get_date_id(self):
-        mock_cursor = Mock()
-        mock_cursor.fetchone.return_value = [1]
-        mock_connection = Mock()
-        mock_connection.cursor.return_value = mock_cursor
-        mock_dw_interface = Mock()
-        mock_dw_interface.connection = mock_connection
-        test_class = Daily_Transactions_ETL(mock_dw_interface)
-        test_date = '89-01-13'
-        result = test_class.get_date_id(test_date)
-        print(result)
-        self.assertEqual(result, 1)
-
+        test_class = Daily_Transactions_ETL(self.mock_dw_interface)
+        first_date = '1989-01-12'
+        second_date = '1990-02-01'
+        valid_result = test_class.get_date_id(first_date)
+        invalid_result = test_class.get_date_id(second_date)
+        self.assertEqual(valid_result, 431)
+        self.assertNotEqual(invalid_result, 1)
 
 if __name__ == '__main__':
     unittest.main()

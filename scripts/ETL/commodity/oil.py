@@ -3,10 +3,11 @@ import os
 from datetime import datetime
 
 class Commodity_Oil_ETL:
-  def __init__(self, dw_interface):
+  def __init__(self, dw_interface, script_time_tracker):
       self.dw_interface = dw_interface
-      script_dir = os.path.dirname(os.path.realpath(__file__))
-      csv_file_path = os.path.join(script_dir, 'BrentOilPrices.csv')
+      self.script_time_tracker = script_time_tracker
+      root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+      csv_file_path = os.path.join(root_dir, 'resources', 'data', 'commodity', 'BrentOilPrices.csv')
       self.insert_oilPrices(csv_file_path)
 
   def insert_oilPrices(self, csv_file_path):
@@ -75,3 +76,6 @@ class Commodity_Oil_ETL:
       self.dw_interface.connection.commit()  # Commit the transaction
       cursor.close()
       print(f"Inserted Oil Price from {commodity_date} into the Dailty_Transaction and Commodity table")
+  
+  def __del__(self):
+    self.script_time_tracker.track_time(self.__class__.__name__)

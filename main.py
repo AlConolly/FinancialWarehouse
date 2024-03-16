@@ -1,8 +1,11 @@
-import os, click, json, datetime
+import os, click, json, textwrap
 from dotenv import load_dotenv
 from pathlib import Path
 
+# Oracle Connection
 from oracle.connection import DW_Interface
+
+# ETL Utils
 from scripts.ETL.utils.script_time_tracker import ScriptTimeTracker
 
 # ETL Classes
@@ -10,13 +13,15 @@ from scripts.ETL.currency.currency import Currency_ETL
 from scripts.ETL.company.company import Company_ETL
 from scripts.ETL.commodity.gold import Commodity_Gold_ETL
 from scripts.ETL.commodity.oil import Commodity_Oil_ETL
+from scripts.ETL.stock.stock import Stock_ETL
 
 # ETL Class Mapping
 script_classes = {
     'Currency': Currency_ETL,
     'Company': Company_ETL,
     'Commodity_Gold': Commodity_Gold_ETL,
-    'Commodity_Oil': Commodity_Oil_ETL
+    'Commodity_Oil': Commodity_Oil_ETL,
+    'Stock': Stock_ETL
 }
 
 load_dotenv()
@@ -47,10 +52,15 @@ def run_script():
     with open('script_history.json', 'r') as file:
         data = json.load(file)
     for i, script in enumerate(scripts, start=1):
-      last_run = data.get(f"{script}_ETL", 'Never executed')
+      first_run = data.get(f"{script}_ETL_First", 'Never executed')
+      last_run = data.get(f"{script}_ETL_Last", 'Never executed')
+      if first_run != 'Never executed':
+          first_run = first_run[:19]  # Keep only the date and time, remove the microseconds
       if last_run != 'Never executed':
           last_run = last_run[:19]  # Keep only the date and time, remove the microseconds
-      print(f"{i}. {script} (Last executed: {last_run})")
+      print(f"{i}. {script}")
+      print(textwrap.indent(f"First executed: {first_run}", '   '))
+      print(textwrap.indent(f"Last executed: {last_run}", '   '))
     print()  # Print a blank line
     choice = click.prompt(
         'Enter the number of the ETL script you want to run', type=int) - 1

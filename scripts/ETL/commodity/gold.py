@@ -3,10 +3,11 @@ import os
 from datetime import datetime
 
 class Commodity_Gold_ETL:
-  def __init__(self, dw_interface):
+  def __init__(self, dw_interface, script_time_tracker):
       self.dw_interface = dw_interface
-      script_dir = os.path.dirname(os.path.realpath(__file__))
-      csv_file_path = os.path.join(script_dir, 'LBMA-GOLD.csv')
+      self.script_time_tracker = script_time_tracker
+      root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+      csv_file_path = os.path.join(root_dir, 'resources', 'data', 'commodity', 'LBMA-GOLD.csv')
       self.insert_goldPrices(csv_file_path)
 
   def insert_goldPrices(self, csv_file_path):
@@ -27,7 +28,7 @@ class Commodity_Gold_ETL:
       except ValueError:
           print(f"Date {input_date} does not match format 'YYYY-MM-DD'. Skipping row.")
           return
-      
+
       # Create a bind variable for an integer
       new_id = cursor.var(int)
 
@@ -70,3 +71,6 @@ class Commodity_Gold_ETL:
       self.dw_interface.connection.commit()  # Commit the transaction
       cursor.close()
       print(f"Inserted Gold Price from {commodity_date} into the Daily_Transaction and Commodity table")
+
+  def __del__(self):
+    self.script_time_tracker.track_time(self.__class__.__name__)

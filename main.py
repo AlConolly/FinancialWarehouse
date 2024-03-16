@@ -7,7 +7,7 @@ from oracle.connection import DW_Interface
 
 # ETL Utils
 from scripts.ETL.utils.script_time_tracker import ScriptTimeTracker
-from scripts.ETL.utils.daily_transactions import DailyTransactions
+from scripts.ETL.utils.daily_transactions import Daily_Transactions_ETL
 
 # ETL Classes
 from scripts.ETL.currency.currency import Currency_ETL
@@ -15,6 +15,9 @@ from scripts.ETL.company.company import Company_ETL
 from scripts.ETL.commodity.gold import Commodity_Gold_ETL
 from scripts.ETL.commodity.oil import Commodity_Oil_ETL
 from scripts.ETL.stock.stock import Stock_ETL
+
+# Visualization Utils
+from scripts.Visualization.Visualization import Visualization
 
 # ETL Class Mapping
 script_classes = {
@@ -32,9 +35,12 @@ password = os.getenv('PASSWORD')
 dsn = os.getenv('DSN')
 wallet_location = os.getenv('WALLET_LOCATION')
 wallet_password = os.getenv('WALLET_PASSWORD')
-
+print(config_dir, user, password, dsn, wallet_location, wallet_password)
 DW_Interface = DW_Interface(config_dir, user, password, dsn, wallet_location, wallet_password)
 Script_Tracker = ScriptTimeTracker()
+
+#Visualization
+# Visualization(DW_Interface)
 
 def list_files(startpath):
     return [

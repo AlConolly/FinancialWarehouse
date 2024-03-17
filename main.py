@@ -15,6 +15,7 @@ from scripts.ETL.company.company import Company_ETL
 from scripts.ETL.commodity.gold import Commodity_Gold_ETL
 from scripts.ETL.commodity.oil import Commodity_Oil_ETL
 from scripts.ETL.stock.stock import Stock_ETL
+from scripts.ETL.date.date import Date_ETL
 
 # Visualization Utils
 from scripts.Visualization.Visualization import Visualization
@@ -39,8 +40,9 @@ print(config_dir, user, password, dsn, wallet_location, wallet_password)
 DW_Interface = DW_Interface(config_dir, user, password, dsn, wallet_location, wallet_password)
 Script_Tracker = ScriptTimeTracker()
 
-#Visualization
+# Visualization
 # Visualization(DW_Interface)
+
 
 def list_files(startpath):
     return [

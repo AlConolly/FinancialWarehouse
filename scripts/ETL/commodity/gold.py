@@ -1,6 +1,5 @@
 import csv
 import os
-from datetime import datetime
 from scripts.ETL.utils.commodity import Commodity_ETL_Util
 
 class Commodity_Gold_ETL:

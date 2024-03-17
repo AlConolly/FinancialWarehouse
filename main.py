@@ -26,7 +26,8 @@ script_classes = {
     'Company': Company_ETL,
     'Commodity_Gold': Commodity_Gold_ETL,
     'Commodity_Oil': Commodity_Oil_ETL,
-    'Stock': Stock_ETL
+    'Stock': Stock_ETL,
+    'Date': Date_ETL
 }
 
 load_dotenv()
@@ -42,7 +43,6 @@ Script_Tracker = ScriptTimeTracker()
 
 # Visualization
 # Visualization(DW_Interface)
-
 
 def list_files(startpath):
     return [
@@ -60,20 +60,34 @@ def run_script():
     scripts = list_files('scripts/ETL')
     with open('script_history.json', 'r') as file:
         data = json.load(file)
-    for i, script in enumerate(scripts, start=1):
-      first_run = data.get(f"{script}_ETL_First", 'Never executed')
-      last_run = data.get(f"{script}_ETL_Last", 'Never executed')
-      if first_run != 'Never executed':
-          first_run = first_run[:19]  # Keep only the date and time, remove the microseconds
-      if last_run != 'Never executed':
-          last_run = last_run[:19]  # Keep only the date and time, remove the microseconds
-      print(f"{i}. {script}")
-      print(textwrap.indent(f"First executed: {first_run}", '   '))
-      print(textwrap.indent(f"Last executed: {last_run}", '   '))
+    completed_scripts = []
+    available_scripts = []
+    counter = 1
+    for script in scripts:
+        complete = data.get(f"{script}_ETL", False)
+        first_run = data.get(f"{script}_ETL_First", 'Never executed')
+        last_run = data.get(f"{script}_ETL_Last", 'Never executed')
+        if first_run != 'Never executed':
+            # Keep only the date and time, remove the microseconds
+            first_run = first_run[:19]
+        if last_run != 'Never executed':
+            # Keep only the date and time, remove the microseconds
+            last_run = last_run[:19]
+        if complete:
+            completed_scripts.append(script)
+            print(f"   {script}")
+        else:
+            available_scripts.append(script)
+            print(f"{counter}. {script}")
+            counter += 1
+        print(textwrap.indent(f"First executed: {first_run}", '   '))
+        print(textwrap.indent(f"Last executed: {last_run}", '   '))
+        print(textwrap.indent(f"Completed: {'Yes' if complete else 'No'}", '   '))
+        print()
     print()  # Print a blank line
     choice = click.prompt(
         'Enter the number of the ETL script you want to run', type=int) - 1
-    script = scripts[choice]
+    script = available_scripts[choice]
     script_class = script_classes[script]
     script_class(DW_Interface, Daily_Transactions_ETL, Script_Tracker)
 

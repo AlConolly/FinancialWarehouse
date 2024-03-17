@@ -20,23 +20,10 @@ class Daily_Transactions_ETL:
     cursor.close()
     return currency_id
 
-  # Parameter Date is in 'YYYY-MM-DD' format
-  def get_date_id(self, date):
-      cursor = self.dw_interface.connection.cursor()
-      date_obj = datetime.strptime(date, '%Y-%m-%d')
-      day, month, year = date_obj.day, date_obj.month, date_obj.year
-      cursor.execute("""
-          SELECT id FROM date_record
-          WHERE date_column = TO_DATE(:date_var, 'YYYY-MM-DD')
-      """, {'date_var': date})
-      date_id = cursor.fetchone()[0]
-      cursor.close()
-      return date_id
-
-
   def insert_daily_transactions(self, transactions_info):
     cursor = self.dw_interface.connection.cursor()
-    print(transactions_info)
+    cursor.execute("SELECT TO_CHAR(date_column, 'YYYY-MM-DD'), id FROM date_record")
+    date_ids = {date: id for date, id in cursor}
 
     # Prepare the data for the batch insert
     data = []
@@ -54,8 +41,8 @@ class Daily_Transactions_ETL:
         high_price = transaction_info.get('high_price')
         low_price = transaction_info.get('low_price')
 
-        print(commodity_id)
-        date_id = Daily_Transactions_ETL.get_date_id(self, date)
+        # Look up the date ID in the dictionary
+        date_id = date_ids[date]
         price_sp500 = 0
         price_gold = 0
         price_oil = 0

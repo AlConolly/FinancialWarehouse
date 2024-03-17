@@ -16,6 +16,7 @@ from scripts.ETL.commodity.gold import Commodity_Gold_ETL
 from scripts.ETL.commodity.oil import Commodity_Oil_ETL
 from scripts.ETL.stock.stock import Stock_ETL
 from scripts.ETL.date.date import Date_ETL
+from scripts.ETL.index_fund.sp_500 import SP_500_ETL
 
 # Visualization Utils
 from scripts.Visualization.Visualization import Visualization
@@ -27,7 +28,8 @@ script_classes = {
     'Commodity_Gold': Commodity_Gold_ETL,
     'Commodity_Oil': Commodity_Oil_ETL,
     'Stock': Stock_ETL,
-    'Date': Date_ETL
+    'Date': Date_ETL,
+    'Sp_500': SP_500_ETL
 }
 
 load_dotenv()
@@ -37,7 +39,6 @@ password = os.getenv('PASSWORD')
 dsn = os.getenv('DSN')
 wallet_location = os.getenv('WALLET_LOCATION')
 wallet_password = os.getenv('WALLET_PASSWORD')
-print(config_dir, user, password, dsn, wallet_location, wallet_password)
 DW_Interface = DW_Interface(config_dir, user, password, dsn, wallet_location, wallet_password)
 Script_Tracker = ScriptTimeTracker()
 

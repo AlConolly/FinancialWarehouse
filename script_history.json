@@ -6,11 +6,15 @@
     "Date_ETL_First": "2024-03-16T13:41:07.836681-07:00",
     "Date_ETL_Last": "2024-03-16T13:41:07.836681-07:00",
     "Company_ETL_Last": "2024-03-16T23:31:53.553368-07:00",
+    "Commodity_Oil_ETL": true,
     "Commodity_Oil_ETL_First": "2024-03-11T19:12:01.836681-07:00",
-    "Commodity_Oil_ETL_Last": "2024-03-16T23:31:03.509034-07:00",
+    "Commodity_Oil_ETL_Last": "2024-03-17T00:00:19.168059-07:00",
     "Commodity_Gold_ETL": true,
     "Commodity_Gold_ETL_First": "2024-03-15T22:53:18.836681-07:00",
     "Commodity_Gold_ETL_Last": "2024-03-16T23:27:32.535318-07:00",
     "Stock_ETL_First": "2024-03-15T23:37:29.475175-07:00",
-    "Stock_ETL_Last": "2024-03-16T23:33:32.170519-07:00"
+    "Stock_ETL_Last": "2024-03-17T00:30:20.764947-07:00",
+    "Sp_500_ETL": true,
+    "Sp_500_ETL_First": "2024-03-17T00:28:09.237554-07:00",
+    "Sp_500_ETL_Last": "2024-03-17T00:28:09.237554-07:00"
 }

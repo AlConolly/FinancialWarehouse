@@ -17,11 +17,11 @@ class DailyTransactionsTests(unittest.TestCase):
 
     def test_get_date_id(self):
         test_class = Daily_Transactions_ETL(self.mock_dw_interface)
-        first_date = '1989-01-12'
-        second_date = '1990-02-01'
+        first_date = '2001-01-01'
+        second_date = '2022-02-01'
         valid_result = test_class.get_date_id(first_date)
         invalid_result = test_class.get_date_id(second_date)
-        self.assertEqual(valid_result, 431)
+        self.assertEqual(valid_result, 4019)
         self.assertNotEqual(invalid_result, 1)
 
 if __name__ == '__main__':

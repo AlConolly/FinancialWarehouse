@@ -16,18 +16,15 @@ class SP_500_ETL:
       self.insert_index_fund_prices(csv_file_paths)
 
   def insert_index_fund_prices(self, csv_file_paths):
+    index_fund_id = self.index_fund_etl_util.get_index_fund_id(self, 'S&P_500')
+    if index_fund_id is None:
+        raise Exception("Index Fund ID not found for S&P_500")
     for csv_file_path in csv_file_paths:
         with open(csv_file_path, 'r') as file:
             csv_reader = csv.reader(file)
             next(csv_reader)
-            index_funds = []
             transaction_infos = []
-            index_fund_id = self.index_fund_etl_util.get_max_index_fund_id()
             for i, row in enumerate(csv_reader):
-                index_fund_id += 1
-                index_fund = {'name': 'S&P_500', 'management_company': 'S&P Dow Jones Indices',
-                              'price': float(row[1].replace(',', '')), 'yield': 0, 'type': 'index_fund'}
-                index_funds.append(index_fund)
                 date = datetime.strptime(row[0], '%m/%d/%Y').strftime('%Y-%m-%d') if 'sp_500_index.csv' in csv_file_path else row[0]
                 transaction_info = {
                     'date': date,
@@ -40,13 +37,10 @@ class SP_500_ETL:
                 }
                 transaction_infos.append(transaction_info)
                 if (i + 1) % 1000 == 0:  # Every 1000 rows, do a batch insert
-                    self.index_fund_etl_util.insert_index_funds(index_funds)
                     self.daily_transactions.insert_daily_transactions(transaction_infos)
-                    index_funds = []
                     transaction_infos = []
             # Insert remaining rows that didn't make up a full batch of 1000
-            if index_funds:
-                self.index_fund_etl_util.insert_index_funds(index_funds)
+            if transaction_infos:
                 self.daily_transactions.insert_daily_transactions(transaction_infos)
 
   def __del__(self):

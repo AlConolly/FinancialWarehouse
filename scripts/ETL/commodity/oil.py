@@ -15,17 +15,14 @@ class Commodity_Oil_ETL:
       self.insert_oil_prices(csv_file_path)
 
   def insert_oil_prices(self, csv_file_path):
+    commodity_id = self.commodity_etl_util.get_commodity_id('Crude Oil')
+    if commodity_id is None:
+        raise Exception("Commodity ID not found for Crude Oil")
     with open(csv_file_path, 'r') as file:
         csv_reader = csv.reader(file)
         next(csv_reader)
-        commodities = []
         transaction_infos = []
-        commodity_id = self.commodity_etl_util.get_max_commodity_id()
         for i, row in enumerate(csv_reader):
-            commodity_id += 1
-            commodity = {'name': 'Crude Oil',
-                         'unit_of_measure': row[1], 'type': "fossil_fuel"}
-            commodities.append(commodity)
             transaction_info = {
                 'date': row[0],
                 'price': (float(row[1])),
@@ -38,12 +35,9 @@ class Commodity_Oil_ETL:
             }
             transaction_infos.append(transaction_info)
             if (i + 1) % 1000 == 0:  # Every 1000 rows, do a batch insert
-                self.commodity_etl_util.insert_commodities(commodities)
                 self.daily_transactions.insert_daily_transactions(transaction_infos)
-                commodities = []
                 transaction_infos = []
-        if commodities:
-            self.commodity_etl_util.insert_commodities(commodities)
+        if transaction_infos:
             self.daily_transactions.insert_daily_transactions(transaction_infos)
 
   def __del__(self):

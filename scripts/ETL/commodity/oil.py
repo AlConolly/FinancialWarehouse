@@ -38,16 +38,15 @@ class Commodity_Oil_ETL:
             }
             transaction_infos.append(transaction_info)
             if (i + 1) % 1000 == 0:  # Every 1000 rows, do a batch insert
-                self.commodity_etl_util.insert_commodities(commodities)
-                self.daily_transactions.insert_daily_transactions(
-                    self, transaction_infos)
+                # self.commodity_etl_util.insert_commodities(commodities)
+                self.daily_transactions.insert_daily_transactions(transaction_infos)
                 commodities = []
                 transaction_infos = []
         # Insert remaining rows that didn't make up a full batch of 1000
-        if commodities:
-            self.commodity_etl_util.insert_commodities(commodities)
-            self.daily_transactions.insert_daily_transactions(
-                self, transaction_infos)
+        # if commodities:
+        #     self.commodity_etl_util.insert_commodities(commodities)
+        #     self.daily_transactions.insert_daily_transactions(
+        #         self, transaction_infos)
 
   def __del__(self):
     self.script_time_tracker.track_time(self.__class__.__name__)

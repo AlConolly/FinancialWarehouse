@@ -40,6 +40,7 @@ dsn = os.getenv('DSN')
 wallet_location = os.getenv('WALLET_LOCATION')
 wallet_password = os.getenv('WALLET_PASSWORD')
 DW_Interface = DW_Interface(config_dir, user, password, dsn, wallet_location, wallet_password)
+
 Script_Tracker = ScriptTimeTracker()
 
 # Visualization
@@ -90,7 +91,10 @@ def run_script():
         'Enter the number of the ETL script you want to run', type=int) - 1
     script = available_scripts[choice]
     script_class = script_classes[script]
-    script_class(DW_Interface, Daily_Transactions_ETL, Script_Tracker)
+    print("Grabbing measures for our ETL scripts...")
+    Daily_Transactions_ETL_Instance = Daily_Transactions_ETL(DW_Interface)
+    print("Measures grabbed!")
+    script_class(DW_Interface, Daily_Transactions_ETL_Instance, Script_Tracker)
 
 if __name__ == '__main__':
     run_script()

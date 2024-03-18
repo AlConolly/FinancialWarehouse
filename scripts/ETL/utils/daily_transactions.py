@@ -35,11 +35,10 @@ class Daily_Transactions_ETL:
     def insert_daily_transactions(self, transactions_info):
         cursor = self.dw_interface.connection.cursor()
         data = self.prepare_data_for_insert(transactions_info)
-        # Execute the batch insert
-        # cursor.executemany(
-        #     "INSERT INTO daily_transactions (stock_id, date_id, commodity_id, index_fund_id, bond_id, currency_id, price, volume, symbol, open_price, high_price, low_price, price_sp500, price_gold, price_oil) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15)",
-        #     data
-        # )
+        cursor.executemany(
+            "INSERT INTO daily_transactions (stock_id, date_id, commodity_id, index_fund_id, bond_id, currency_id, price, volume, symbol, open_price, high_price, low_price, price_sp500, price_gold, price_oil) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15)",
+            data
+        )
         self.dw_interface.connection.commit()
         cursor.close()
         print("Daily Transactions Batch inserted successfully")
@@ -61,12 +60,9 @@ class Daily_Transactions_ETL:
             low_price = transaction_info.get('low_price')
 
             date_id = self.date_ids[date]
-            price_gold, price_oil, price_sp500 = self.prices[date_id]
+            price_gold, price_oil, price_sp500 = self.prices.get(date_id, (0, 0, 0))
             currency_id = self.currency_ids.get(
                 currency_code, 57)  # Default to USD if not found
-
-            print(date_id, price_gold, price_oil, price_sp500, currency_id)
-
             data.append((stock_id, date_id, commodity_id, index_fund_id, bond_id, currency_id, price,
                         volume, symbol, open_price, high_price, low_price, price_sp500, price_gold, price_oil))
         return data

@@ -5,7 +5,7 @@ class Index_Fund_ETL_Util:
   def insert_index_funds(self, index_funds):
       cursor = self.dw_interface.connection.cursor()
       cursor.executemany(
-          "INSERT INTO index_fund (name, management_company, net_asset_value, yield, type) VALUES (:name, :management_company, :net_asset_value, :yield, :type)",
+          "INSERT INTO index_fund (name, management_company, price, yield, type) VALUES (:name, :management_company, :price, :yield, :type)",
           index_funds
       )
       self.dw_interface.connection.commit()

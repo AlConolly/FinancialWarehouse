@@ -29,7 +29,7 @@ script_classes = {
     'Commodity_Oil': Commodity_Oil_ETL,
     'Stock': Stock_ETL,
     'Date': Date_ETL,
-    'Sp_500': SP_500_ETL
+    'Sp_500': SP_500_ETL,
 }
 
 load_dotenv()

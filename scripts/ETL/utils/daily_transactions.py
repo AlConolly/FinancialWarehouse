@@ -65,4 +65,6 @@ class Daily_Transactions_ETL:
                 currency_code, 57)  # Default to USD if not found
             data.append((stock_id, date_id, commodity_id, index_fund_id, bond_id, currency_id, price,
                         volume, symbol, open_price, high_price, low_price, price_sp500, price_gold, price_oil))
+            print(data[0])
+        print("Data prepared for insert successfully")
         return data

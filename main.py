@@ -49,9 +49,9 @@ Script_Tracker = ScriptTimeTracker()
 def list_files(startpath):
     return [
         f"{path.parent.stem.capitalize()}_{path.stem.capitalize()}"
-        if len([p for p in path.parent.glob('*') if p.is_file() and p.stem != '__init__']) > 1 else path.stem.capitalize()
+        if len([p for p in path.parent.glob('*') if p.is_file() and p.stem != '__init__' and p.suffix != '.txt']) > 1 else path.stem.capitalize()
         for path in Path(startpath).rglob('*')
-        if path.is_file() and path.stem != '__init__' and 'utils' not in path.parts and '__pycache__' not in path.parts
+        if path.is_file() and path.stem != '__init__' and 'utils' not in path.parts and '__pycache__' not in path.parts and path.suffix != '.txt'
     ]
 
 @click.command()

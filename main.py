@@ -17,6 +17,7 @@ from scripts.ETL.commodity.oil import Commodity_Oil_ETL
 from scripts.ETL.stock.stock import Stock_ETL
 from scripts.ETL.date.date import Date_ETL
 from scripts.ETL.index_fund.sp_500 import SP_500_ETL
+from scripts.ETL.bond.bond import Bond_ETL
 
 # Visualization Utils
 from scripts.Visualization.Visualization import Visualization
@@ -30,6 +31,7 @@ script_classes = {
     'Stock': Stock_ETL,
     'Date': Date_ETL,
     'Sp_500': SP_500_ETL,
+    'Bond': Bond_ETL,
 }
 
 load_dotenv()

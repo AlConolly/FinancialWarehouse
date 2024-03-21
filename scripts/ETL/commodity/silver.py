@@ -1,7 +1,6 @@
 import csv
 import os
 from scripts.ETL.utils.commodity import Commodity_ETL_Util
-from scripts.ETL.utils.daily_transactions import Daily_Transactions_ETL
 
 class Commodity_Silver_ETL():
     def __init__(self, dw_interface, daily_transactions, script_time_tracker):

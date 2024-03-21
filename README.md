@@ -21,6 +21,5 @@ Checkout our installation documentation [here](./docs/installation.md)
 - [Crude Oil Data](https://ca.investing.com/commodities/crude-oil-historical-data)
 - [Gold Data](https://www.kaggle.com/datasets/faisaljanjua0555/daily-gold-price-historical-dataset)
 - [Silver Data](https://www.kaggle.com/datasets/balabaskar/silver-prices-1968-2021)
-- [Corn, Coffee, Wheat](https://www.kaggle.com/datasets/mabdullahsajid/global-grain-and-coffee-price-history-1973-2023)
-- ['idk yet'](https://www.kaggle.com/datasets/debashish311601/commodity-prices)
+- [All Other Commodity Data](https://www.kaggle.com/datasets/debashish311601/commodity-prices)
   

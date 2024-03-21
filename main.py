@@ -14,6 +14,7 @@ from scripts.ETL.currency.currency import Currency_ETL
 from scripts.ETL.company.company import Company_ETL
 from scripts.ETL.commodity.gold import Commodity_Gold_ETL
 from scripts.ETL.commodity.oil import Commodity_Oil_ETL
+from scripts.ETL.commodity.silver import Commodity_Silver_ETL
 from scripts.ETL.stock.stock import Stock_ETL
 from scripts.ETL.date.date import Date_ETL
 from scripts.ETL.index_fund.sp_500 import SP_500_ETL
@@ -27,6 +28,7 @@ script_classes = {
     'Company': Company_ETL,
     'Commodity_Gold': Commodity_Gold_ETL,
     'Commodity_Oil': Commodity_Oil_ETL,
+    'Commodity_Silver': Commodity_Silver_ETL,
     'Stock': Stock_ETL,
     'Date': Date_ETL,
     'Sp_500': SP_500_ETL,

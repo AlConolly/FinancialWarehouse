@@ -30,6 +30,8 @@ script_classes = {
     'Company': Company_ETL,
     'Commodity_Gold': Commodity_Gold_ETL,
     'Commodity_Oil': Commodity_Oil_ETL,
+    'Commodity_Silver': Commodity_Silver_ETL,
+    'Commodity_Many': Commodity_Many_ETL,
     'Stock': Stock_ETL,
     'Date': Date_ETL,
     'Sp_500': SP_500_ETL,

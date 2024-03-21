@@ -1,7 +1,6 @@
 import csv
 import os
 from scripts.ETL.utils.bond import Bond_ETL_Util
-from scripts.ETL.utils.date_format_converter import convert_date_format
 
 class Bond_ETL:
   def __init__(self, dw_interface, daily_transactions, script_time_tracker):

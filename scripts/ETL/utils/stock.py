@@ -31,3 +31,13 @@ class Stock_ETL_Util:
             return result[0]
         else:
             return None
+
+
+  def insert_into_company(self, symbol):
+    insert_query = """
+    INSERT INTO COMPANY (symbol)
+    VALUES (:1)
+    """
+    with self.dw_interface.connection.cursor() as cursor:
+        cursor.execute(insert_query, (symbol,))
+    self.dw_interface.connection.commit()

@@ -7,6 +7,7 @@ class Stock_ETL:
       self.dw_interface = dw_interface
       self.script_time_tracker = script_time_tracker
       self.daily_transactions = daily_transactions
+<<<<<<< HEAD
       self.stock_etl_util = Stock_ETL_Util(dw_interface)
       root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
       csv_file_path = os.path.join(root_dir, 'resources', 'data', 'stock', 'sp500_stocks.csv')
@@ -69,6 +70,14 @@ class Stock_ETL:
         # Store the index of the last processed row
         with open(index_csv_file_path, 'w') as f:
             f.write(str(i))
+=======
+      # root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+      # csv_file_path = os.path.join(root_dir, 'resources', 'data', '<folder name>', '<etl file name>')
+      # self.insert_currencyPrices(csv_file_path)
+  
+  # def insert_currencyPrices(self, csv_file_path):
+  #   # Write your ETL script here
+>>>>>>> daily_transactions_util
 
   def __del__(self):
     self.script_time_tracker.track_time(self.__class__.__name__)

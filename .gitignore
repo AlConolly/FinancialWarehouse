@@ -7,3 +7,4 @@ venv/
 Wallet_JSX031OXSTSUSO9D/
 *.csv
 machine_learning/XGBoostTest.py
+*.csv

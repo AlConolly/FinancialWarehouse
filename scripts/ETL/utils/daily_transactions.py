@@ -33,6 +33,7 @@ class Daily_Transactions_ETL:
         return currency_ids
 
     def insert_daily_transactions(self, transactions_info):
+        print("Inserting Daily Transactions")
         cursor = self.dw_interface.connection.cursor()
         data = self.prepare_data_for_insert(transactions_info)
         cursor.executemany(

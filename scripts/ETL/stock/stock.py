@@ -29,7 +29,9 @@ class Stock_ETL:
             if symbol != prev_symbol:
                 company_id = self.stock_etl_util.get_company_id_by_symbol(symbol)
                 if company_id is None:
-                    continue
+                    self.stock_etl_util.insert_into_company(symbol)
+                    company_id = self.stock_etl_util.get_company_id_by_symbol(symbol)
+
                 self.stock_etl_util.insert_stock(company_id, 0, '', 0)
                 stock_id = self.stock_etl_util.get_stock_id_by_company_id(company_id)
                 prev_symbol = symbol
@@ -45,18 +47,20 @@ class Stock_ETL:
                     'volume': int(row[7]) if row[7] else 0,
                     'stock_id': int(stock_id)
                 }
-            except ValueError:
+            except:
                 continue
 
+            print(i)
+
             transaction_infos.append(transaction_info)
-            if (i + 1) % 1000 == 0:
+            if (i + 1) % 5000 == 0:
                 self.daily_transactions.insert_daily_transactions(
                     transaction_infos)
                 transaction_infos = []
 
                 # Store the index of the last processed row
                 with open(index_csv_file_path, 'w') as f:
-                    f.write(str(i))
+                    f.write(str(last_row + i))
 
         if transaction_infos:
             self.daily_transactions.insert_daily_transactions(

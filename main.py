@@ -19,8 +19,13 @@ from scripts.ETL.date.date import Date_ETL
 from scripts.ETL.index_fund.sp_500 import SP_500_ETL
 from scripts.ETL.bond.bond import Bond_ETL
 
+#machine_learning
+from machine_learning.sklearn_test import sklearn_test
+from machine_learning.sklearn_test_MLP import sklearn_test_MLP
+
 # Visualization Utils
 from scripts.Visualization.Visualization import Visualization
+import pandas as pd
 
 # ETL Class Mapping
 script_classes = {
@@ -99,4 +104,5 @@ def run_script():
     script_class(DW_Interface, Daily_Transactions_ETL_Instance, Script_Tracker)
 
 if __name__ == '__main__':
+    #sklearn_test(DW_Interface)
     run_script()

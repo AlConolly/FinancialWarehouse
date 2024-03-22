@@ -25,5 +25,11 @@
     "SP_500_ETL_First": "2024-03-17T18:55:07.190650-07:00",
     "SP_500_ETL_Last": "2024-03-17T18:55:07.190650-07:00",
     "Bond_ETL_First": "2024-03-18T20:55:33.815875-07:00",
-    "Bond_ETL_Last": "2024-03-18T20:59:47.017102-07:00"
+    "Bond_ETL_Last": "2024-03-18T20:59:47.017102-07:00",
+    "Commodity_Silver_ETL_First": "2024-03-21T10:47:34.396107-07:00",
+    "Commodity_Silver_ETL_Last": "2024-03-21T10:47:34.396107-07:00",
+    "Commodity_Silver_ETL": true,
+    "Commodity_Many_ETL_First": "2024-03-21T14:12:28.441822-07:00",
+    "Commodity_Many_ETL_Last": "2024-03-21T14:28:11.178622-07:00",
+    "Commodity_Many_ETL": true
 }

@@ -60,7 +60,7 @@ DW_Interface = DW_Interface(config_dir, user, password, dsn, wallet_location, wa
 Script_Tracker = ScriptTimeTracker()
 
 # Visualization
-Visualization(DW_Interface)
+# Visualization(DW_Interface)
 
 def list_files(startpath):
     return [

@@ -21,6 +21,7 @@ from scripts.ETL.date.date import Date_ETL
 from scripts.ETL.index_fund.sp_500 import SP_500_ETL
 from scripts.ETL.bond.bond import Bond_ETL
 from scripts.ETL.index_fund.vti import VTI_ETL
+from scripts.ETL.aggerate_value import Aggerate_Value_ETL
 
 #machine_learning
 from machine_learning.sklearn_test import sklearn_test
@@ -43,6 +44,12 @@ script_classes = {
     'Sp_500': SP_500_ETL,
     'Bond': Bond_ETL,
     'Index_fund_Vti': VTI_ETL,
+    'Commodity_Silver': Commodity_Silver_ETL,
+    'Commodity_Many': Commodity_Many_ETL,
+    'Stock': Stock_ETL,
+    'Date': Date_ETL,
+    'Sp_500': SP_500_ETL,
+    'Aggerate_value': Aggerate_Value_ETL
 }
 
 load_dotenv()
@@ -57,7 +64,7 @@ DW_Interface = DW_Interface(config_dir, user, password, dsn, wallet_location, wa
 Script_Tracker = ScriptTimeTracker()
 
 # Visualization
-Visualization(DW_Interface)
+# Visualization(DW_Interface)
 
 def list_files(startpath):
     return [

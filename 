@@ -1,0 +1,203 @@
+[33mcommit 72c48c8bf003058b64c9c110921ae37c9080fa7d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Sal Mourad <sal.mourad95@gmail.com>
+Date:   Sat Mar 30 12:25:43 2024 -0700
+
+    Vangaurd Index Fund Script
+
+[33mcommit 53710241977dd6a5445521bc36c4d07e85645a6e[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Wed Mar 20 18:45:40 2024 -0700
+
+    Fixed Stock ETL and Finished it
+
+[33mcommit 15cb584753ccc0c687ec28e334348c8998a3958e[m
+Author: AlConolly <87101932+AlConolly@users.noreply.github.com>
+Date:   Mon Mar 18 21:14:22 2024 -0700
+
+    added ETL for bonds (#9)
+
+[33mcommit 4d64fbaffb2fe260fbed88ca32da3aca0a281df2[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Mon Mar 18 20:28:53 2024 -0700
+
+    Multiple Stock Script working
+
+[33mcommit a6724debca0466f4dea51518fa14b43036d7dd2d[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Mon Mar 18 19:48:33 2024 -0700
+
+    Single Stock script working
+
+[33mcommit 197ac10ca9ccc809406f790caf12d334d78e7412[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sun Mar 17 22:00:53 2024 -0700
+
+    Fixed ETL scripts
+
+[33mcommit 3008ac06e8c30d5c3cac416dd85aec7ef12c9e69[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sun Mar 17 19:20:03 2024 -0700
+
+    Finished fact table script
+
+[33mcommit 4509bb9cd7af7b584765190a14b97b89f39779ae[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sun Mar 17 17:56:31 2024 -0700
+
+    SP500, Oil and Gold methods working
+
+[33mcommit f6a71b2b87f77e4b0682b19889de7d0887b5f380[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sun Mar 17 00:30:45 2024 -0700
+
+    SP500 Added
+
+[33mcommit 11f94e16b876bdc84346581b7af4218da52aa4c3[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sat Mar 16 23:35:05 2024 -0700
+
+    Fixed up main with new history
+
+[33mcommit a7f4791fd94840618f1f9c0534b85ca5ddba787f[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sat Mar 16 23:09:06 2024 -0700
+
+    Gold ETL Refactor
+
+[33mcommit 8e30f99c30e2b13f0a1ac2cf5d00cff5cc9ec061[m
+Author: AndrewWMeier <123119277+AndrewWMeier@users.noreply.github.com>
+Date:   Sat Mar 16 14:08:08 2024 -0700
+
+    date table redone and filled
+
+[33mcommit efac52cf95250a1aaf1b2f83a64abdc976b29811[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sat Mar 16 13:33:49 2024 -0700
+
+    Setup unit test for get_date_time
+
+[33mcommit aee66fc27377c6cb296ac35465b8519ceb228292[m
+Author: AndrewWMeier <123119277+AndrewWMeier@users.noreply.github.com>
+Date:   Sat Mar 16 12:43:51 2024 -0700
+
+    Added visualization folder
+
+[33mcommit 8f752ef3e83bb52225447cb7a7dbd81969d7ba33[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sat Mar 16 11:55:31 2024 -0700
+
+    Skeleton code
+
+[33mcommit 23788f76783f5bd1d22dcea75844ba106a60f210[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Fri Mar 15 23:46:37 2024 -0700
+
+    Refactor of Repo and Added Command Line Interface (#5)
+    
+    * Console library implimented and folder restructure
+    
+    * Finished refactor
+    
+    * Added Libraries
+
+[33mcommit 57edc2510ccce51912969b3a8e92219ee5a7d128[m
+Author: AlConolly <87101932+AlConolly@users.noreply.github.com>
+Date:   Fri Mar 15 21:20:52 2024 -0700
+
+    Added Oil ETL Script and dataset (#4)
+    
+    * Added Oil ETL Script and dataset
+    
+    * Currency and Gold ETL added
+    
+    Note that currency isn't set yet when loading commodities.
+
+[33mcommit b71da0e9817d6cadc2387f0c4778f0314525d7b5[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sun Mar 10 20:04:09 2024 -0700
+
+    Updated Schema Diagram and Script (#3)
+
+[33mcommit a483d67ed3f251bdd93ae012524ad5941f315dec[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sat Mar 9 17:35:48 2024 -0800
+
+    Add Company ETL Script and CSV
+
+[33mcommit 671c1404ceb70219f1814b9e64986d5f8ac8c712[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sat Mar 9 15:38:04 2024 -0800
+
+    Added index_fund table and foreign key
+
+[33mcommit 34c39a611808bd50a39a9959d30bd3e2feaf16a9[m
+Author: AndrewWMeier <123119277+AndrewWMeier@users.noreply.github.com>
+Date:   Sat Mar 9 13:02:39 2024 -0800
+
+    script to initialize datawarehouse (already ran)
+
+[33mcommit dac986c6f8d9904289c21e97c15220006a992b4b[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sat Mar 9 12:53:10 2024 -0800
+
+    Fixed Wallet in README
+
+[33mcommit aa0d55a27ecd71820607a7ee061d002ea2028092[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sat Mar 9 12:39:45 2024 -0800
+
+    Added Diagram
+
+[33mcommit 838a2fa0a1f4b287d1f4e81dfe28b7335d9bcfda[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Fri Feb 16 20:08:40 2024 -0800
+
+    Added Installation Instructions
+
+[33mcommit 9752237feb0312ffd7179ccb42c1f63746741f25[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Fri Feb 16 19:16:20 2024 -0800
+
+    Updated Requirements Module
+
+[33mcommit 32f3690ba35104654ec4dbb0f10757345316df20[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Fri Feb 16 19:13:19 2024 -0800
+
+    Added Oracle Connection
+
+[33mcommit 93a6ab3ebcc51fc23c46cc54da5ee017713860bf[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Sun Feb 11 21:18:54 2024 -0800
+
+    Added Progress Bar for Script
+
+[33mcommit 2c8f992b24559f44a6941c17a2634956d5139631[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Fri Feb 9 21:33:14 2024 -0800
+
+    Added Types
+
+[33mcommit 0ea694b38c964506fd9a48a9bde17bc054af97c7[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Fri Feb 9 19:39:42 2024 -0800
+
+    Initial Structure Setup
+
+[33mcommit 608352d646ff1b3a08107ea3c8f6f0bbbb4767fd[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Thu Feb 8 21:08:16 2024 -0800
+
+    Modified Table and Changed AppID Approach
+
+[33mcommit 576219813411a999243c771ef36642fc751db9a4[m
+Author: Callum Brezden <callumbrezden@gmail.com>
+Date:   Wed Feb 7 18:37:33 2024 -0800
+
+    Added MySQL Connection
+
+[33mcommit f94008dbb05c1047b56c2b03291b922c37298613[m
+Author: AndrewWMeier <123119277+AndrewWMeier@users.noreply.github.com>
+Date:   Wed Feb 7 18:08:04 2024 -0800
+
+    initial commit

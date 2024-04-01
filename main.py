@@ -21,15 +21,7 @@ from scripts.ETL.date.date import Date_ETL
 from scripts.ETL.index_fund.sp_500 import SP_500_ETL
 from scripts.ETL.bond.bond import Bond_ETL
 from scripts.ETL.index_fund.vti import VTI_ETL
-from scripts.ETL.aggerate_value import Aggerate_Value_ETL
-
-#machine_learning
-from machine_learning.sklearn_test import sklearn_test
-from machine_learning.sklearn_test_MLP import sklearn_test_MLP
-
-# Visualization Utils
-from scripts.Visualization.Visualization import Visualization
-import pandas as pd
+from scripts.ETL.utils.aggerate_value import Aggerate_Value_ETL
 
 # ETL Class Mapping
 script_classes = {
@@ -62,9 +54,6 @@ wallet_password = os.getenv('WALLET_PASSWORD')
 DW_Interface = DW_Interface(config_dir, user, password, dsn, wallet_location, wallet_password)
 
 Script_Tracker = ScriptTimeTracker()
-
-# Visualization
-# Visualization(DW_Interface)
 
 def list_files(startpath):
     return [
@@ -117,5 +106,4 @@ def run_script():
     script_class(DW_Interface, Daily_Transactions_ETL_Instance, Script_Tracker)
 
 if __name__ == '__main__':
-    #sklearn_test(DW_Interface)
     run_script()

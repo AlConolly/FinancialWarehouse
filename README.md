@@ -8,6 +8,8 @@ The purpose of this project is to create a financial data warehouse that can be 
 
 The ETL process for this project was relatively straightforward. We used Python to load the data. The data was extracted from a variety of sources, including CSV files and APIs. The data was then transformed and loaded into a our warehouse for further analysis.
 
+For more information on the ETL creation process, please see the [ETL documentation](./docs/etl_script_creation.md).
+
 ## Installation
 
 Checkout our installation documentation [here](./docs/installation.md)
@@ -21,4 +23,6 @@ Checkout our installation documentation [here](./docs/installation.md)
 - [Crude Oil Data](https://ca.investing.com/commodities/crude-oil-historical-data)
 - [Gold Data](https://www.kaggle.com/datasets/faisaljanjua0555/daily-gold-price-historical-dataset)
 - [US 14-Year Bond Historical Data](https://ca.investing.com/rates-bonds/u.s.-10-year-bond-yield-historical-data)
--[VTI DATA](https://finance.yahoo.com/quote/VTI/history?period1=992563200&period2=1710720000&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true)
+- [Silver Data](https://www.kaggle.com/datasets/balabaskar/silver-prices-1968-2021)
+- [All Other Commodity Data](https://www.kaggle.com/datasets/debashish311601/commodity-prices)
+- [VTI DATA](https://finance.yahoo.com/quote/VTI/history?period1=992563200&period2=1710720000&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true)

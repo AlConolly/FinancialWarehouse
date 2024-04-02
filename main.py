@@ -28,6 +28,8 @@ from machine_learning.sklearn_test_MLP import sklearn_test_MLP
 # Visualization Utils
 from scripts.Visualization.Visualization import Visualization
 import pandas as pd
+from scripts.ETL.index_fund.vti import VTI_ETL
+from scripts.ETL.utils.aggerate_value import Aggerate_Value_ETL
 
 # ETL Class Mapping
 script_classes = {
@@ -41,11 +43,13 @@ script_classes = {
     'Date': Date_ETL,
     'Sp_500': SP_500_ETL,
     'Bond': Bond_ETL,
+    'Index_fund_Vti': VTI_ETL,
     'Commodity_Silver': Commodity_Silver_ETL,
     'Commodity_Many': Commodity_Many_ETL,
     'Stock': Stock_ETL,
     'Date': Date_ETL,
-    'Sp_500': SP_500_ETL
+    'Sp_500': SP_500_ETL,
+    'Aggerate_value': Aggerate_Value_ETL
 }
 
 load_dotenv()
@@ -58,9 +62,6 @@ wallet_password = os.getenv('WALLET_PASSWORD')
 DW_Interface = DW_Interface(config_dir, user, password, dsn, wallet_location, wallet_password)
 
 Script_Tracker = ScriptTimeTracker()
-
-# Visualization
-# Visualization(DW_Interface)
 
 def list_files(startpath):
     return [

@@ -23,7 +23,6 @@ from scripts.ETL.bond.bond import Bond_ETL
 
 #machine_learning
 from machine_learning.sklearn_test import sklearn_test
-from machine_learning.sklearn_test_MLP import sklearn_test_MLP
 
 # Visualization Utils
 from scripts.Visualization.Visualization import Visualization
@@ -114,5 +113,10 @@ def run_script():
     script_class(DW_Interface, Daily_Transactions_ETL_Instance, Script_Tracker)
 
 if __name__ == '__main__':
-    #sklearn_test(DW_Interface)
+    #machine_learning = sklearn_test(DW_Interface)
+    #machine_learning.LinearRegression()
+    #machine_learning.Random_Forest()
+    #machine_learning.MLP()
+    #machine_learning.SVR()
     run_script()
+    

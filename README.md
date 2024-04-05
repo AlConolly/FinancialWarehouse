@@ -16,6 +16,13 @@ Checkout our installation documentation [here](./docs/installation.md)
 
 ## References
 
+### Tools Used
+- [Python](https://www.python.org/)
+- [Pandas](https://pandas.pydata.org/)
+- [Oracle Cloud](https://www.oracle.com/cloud/)
+- [Matplotlib](https://matplotlib.org/)
+- [Scikit-learn](https://scikit-learn.org/stable/)
+
 ### Data Sources
 - [S&P 500 Stock Data](https://www.kaggle.com/datasets/andrewmvd/sp-500-stocks?resource=download&select=sp500_stocks.csv)
 - [S&P 500 Stock Index Data](https://www.nasdaq.com/market-activity/index/spx/historical?page=1&rows_per_page=10&timeline=y10)
@@ -26,3 +33,6 @@ Checkout our installation documentation [here](./docs/installation.md)
 - [Silver Data](https://www.kaggle.com/datasets/balabaskar/silver-prices-1968-2021)
 - [All Other Commodity Data](https://www.kaggle.com/datasets/debashish311601/commodity-prices)
 - [VTI DATA](https://finance.yahoo.com/quote/VTI/history?period1=992563200&period2=1710720000&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true)
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details.
